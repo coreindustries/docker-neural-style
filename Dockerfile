@@ -18,6 +18,8 @@ RUN  echo 'Acquire::http { Proxy "http://192.168.150.50:3142"; };' >> /etc/apt/a
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 	wget \
+	git \
+	vim \
 	&& rm -rf /var/lib/apt/lists/*
 
 
@@ -30,20 +32,3 @@ RUN cd $WORKDIR; bash install-deps;
 RUN ./install.sh
 
 
-
-# TensorBoard
-EXPOSE 6006
-# IPython
-EXPOSE 8888
-
-WORKDIR "/opt/blazingdb"
-
-RUN wget http://blazing-public-downloads.s3-website-us-west-2.amazonaws.com/installer/blazingdb_installer.sh
-RUN wget http://blazing-public-downloads.s3-website-us-west-2.amazonaws.com/installer/blazingworkbench_installer.sh
-
-RUN chmod +x blazingdb_installer.sh
-RUN ./blazingdb_installer.sh
-CMD /opt/blazing/Simplicity 8890 /opt/blazing/disk1/blazing/blazing.conf
-
-
-# CMD ["/run_jupyter.sh"]
