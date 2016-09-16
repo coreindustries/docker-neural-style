@@ -1,4 +1,5 @@
 # https://github.com/jcjohnson/neural-style
+# http://www.makeuseof.com/tag/create-neural-paintings-deepstyle-ubuntu/
 FROM nvidia/cuda:8.0-cudnn5-runtime
 
 
@@ -30,6 +31,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	protobuf-compiler \
 	lua5.2 \
 	lua5.2-dev \
+	luarocks \
+	luajit \
 	&& rm -rf /var/lib/apt/lists/*
 
 
