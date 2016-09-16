@@ -37,5 +37,13 @@ RUN cd distro; ./install-deps;
 
 
 # INSTALL LOADTORCH
+WORKDIR "/opt/lua"
+RUN wget http://luarocks.org/releases/luarocks-2.4.0.tar.gz
+RUN tar zxpf luarocks-2.4.0.tar.gz
+RUN cd luarocks-2.4.0
+RUN ./configure; sudo make bootstrap
+RUN sudo luarocks install luasocket
+
+WORKDIR "/opt/loadcaffe"
 RUN git clone https://github.com/szagoruyko/loadcaffe
 RUN luarocks install loadcaffe
