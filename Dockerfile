@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     software-properties-common \
     gcc \
     cmake \
+    unzip \
 	wget \
 	git \
 	vim \
