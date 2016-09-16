@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	wget \
 	git \
 	vim \
+	curl \
 	libprotobuf-dev \
 	protobuf-compiler \
 	lua5.2 \
