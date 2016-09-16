@@ -28,18 +28,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
 
-# INSTALL TORCH
-WORKDIR "/opt/torch"
-# http://torch.ch/docs/getting-started.html
-# in a terminal, run the commands WITHOUT sudo
-RUN git clone https://github.com/torch/distro.git $WORKDIR --recursive
-# WORKDIR $WORKDIR
-RUN cd distro; ./install-deps;
+# # INSTALL TORCH
+# WORKDIR "/opt/torch"
+# # http://torch.ch/docs/getting-started.html
+# # in a terminal, run the commands WITHOUT sudo
+# RUN git clone https://github.com/torch/distro.git $WORKDIR --recursive
+# # WORKDIR $WORKDIR
+# RUN cd distro; ./install-deps;
 # RUN ./install.sh
 
 
 
-# INSTALL LOADTORCH
+# INSTALL LOADCAFFE
 WORKDIR "/opt/lua"
 RUN wget http://luarocks.org/releases/luarocks-2.4.0.tar.gz
 RUN tar zxpf luarocks-2.4.0.tar.gz
