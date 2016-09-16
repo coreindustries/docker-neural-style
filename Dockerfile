@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR "/opt/torch"
 # http://torch.ch/docs/getting-started.html
 # in a terminal, run the commands WITHOUT sudo
-RUN git clone https://github.com/torch/distro.git ~/torch --recursive
+RUN git clone https://github.com/torch/distro.git $WORKDIR --recursive
 WORKDIR $WORKDIR
 # RUN cd $WORKDIR; bash install-deps;
 # RUN ./install.sh
