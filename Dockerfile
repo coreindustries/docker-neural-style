@@ -53,4 +53,10 @@ RUN sudo luarocks install luasec; sudo luarocks install luasocket
 
 WORKDIR "/opt/loadcaffe"
 RUN git clone https://github.com/szagoruyko/loadcaffe
-RUN luarocks install loadcaffe
+# RUN luarocks install loadcaffe
+
+
+
+
+
+
