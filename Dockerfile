@@ -22,6 +22,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	vim \
 	libprotobuf-dev \
 	protobuf-compiler \
+	lua5.2 \
+	lua5.2-dev \
 	&& rm -rf /var/lib/apt/lists/*
 
 
