@@ -1,7 +1,8 @@
 # https://github.com/jcjohnson/neural-style
 # http://www.makeuseof.com/tag/create-neural-paintings-deepstyle-ubuntu/
 # https://github.com/kchen-tw/docker_neural-style/blob/master/Dockerfile
-FROM nvidia/cuda:8.0-cudnn5-runtime
+# FROM nvidia/cuda:8.0-cudnn5-runtime
+FROM nvidia/cuda:8.0-cudnn5-devel
 
 ADD version.txt /opt/version
 
@@ -100,7 +101,33 @@ RUN apt-get install -y libprotobuf-dev protobuf-compiler
 RUN /root/torch/install/bin/luarocks install loadcaffe
 
 # luarocks install torch
+ENV CUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda
+ENV CUDA_BIN_PATH=/usr/local/cuda
 RUN /root/torch/install/bin/luarocks install cutorch
+# Step 14 : RUN /root/torch/install/bin/luarocks install cutorch
+#  ---> Running in 04cf18e68c0a
+# Cloning into 'cutorch'...
+# -- The C compiler identification is GNU 4.8.4
+# -- The CXX compiler identification is GNU 4.8.4
+# -- Check for working C compiler: /usr/bin/cc
+# -- Check for working C compiler: /usr/bin/cc -- works
+# -- Detecting C compiler ABI info
+# -- Detecting C compiler ABI info - done
+# -- Check for working CXX compiler: /usr/bin/c++
+# -- Check for working CXX compiler: /usr/bin/c++ -- works
+# -- Detecting CXX compiler ABI info
+# -- Detecting CXX compiler ABI info - done
+# -- Found Torch7 in /root/torch/install
+# CMake Error at /usr/share/cmake-2.8/Modules/FindCUDA.cmake:548 (message):
+#   Specify CUDA_TOOLKIT_ROOT_DIR
+# Call Stack (most recent call first):
+#   CMakeLists.txt:7 (FIND_PACKAGE)
+
+
+# -- Configuring incomplete, errors occurred!
+# See also "/tmp/luarocks_cutorch-scm-1-2034/cutorch/build/CMakeFiles/CMakeOutput.log".
+
+# Error: Build error: Failed building.
 
 # Install neural-style
 WORKDIR /root
