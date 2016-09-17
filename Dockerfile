@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	lua5.2-dev \
 	luarocks \
 	luajit \
-	&& rm -rf /var/lib/apt/lists/*
+	&& luarocks install luasocket;luarocks install image;luarocks install nn
 
 
 
@@ -65,6 +65,7 @@ RUN sh models/download_models.sh
 
 WORKDIR "/opt"
 
+RUN rm -rf /var/lib/apt/lists/*
 
 
 
