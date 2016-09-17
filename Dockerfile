@@ -55,7 +55,10 @@ RUN /opt/torch/install.sh
 
 
 # Install loadcaffe./r
-RUN /opt/torch/install/bin/luarocks install loadcaffe
+RUN /opt/torch/install/bin/luarocks install loadcaffe \
+	/opt/torch/install/bin/luarocks install nn \
+	/opt/torch/install/bin/luarocks install image \
+	/opt/torch/install/bin/luarocks install paths
 
 # Install neural-style
 WORKDIR /opt
@@ -75,6 +78,6 @@ ADD models /opt/neural-style/models/
 
 
 # https://github.com/jcjohnson/neural-style
-# th neural_style.lua -gpu -1 -style_image /projects/photos/style/The-Tree-Of-Life.jpg -content_image /projects/photos/source/amy_b-w.jpeg -output_image /projects/photos/output/amy_tree_of_life.png
+# th neural_style.lua -gpu 1 -style_image /projects/photos/style/The-Tree-Of-Life.jpg -content_image /projects/photos/source/amy_b-w.jpeg -output_image /projects/photos/output/amy_tree_of_life.png
 
 
