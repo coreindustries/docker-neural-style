@@ -95,9 +95,12 @@ WORKDIR /root/torch
 RUN /root/torch/install.sh
 
 
-# Install loadcaffe
+# Install loadcaffe./r
 RUN apt-get install -y libprotobuf-dev protobuf-compiler
 RUN /root/torch/install/bin/luarocks install loadcaffe
+
+# luarocks install torch
+RUN /root/torch/install/bin/luarocks install cutorch
 
 # Install neural-style
 WORKDIR /root
@@ -106,7 +109,32 @@ RUN git clone --depth 1 https://github.com/jcjohnson/neural-style.git
 WORKDIR /root/neural-style
 RUN bash models/download_models.sh
 
+
+# https://github.com/jcjohnson/neural-style
 # th neural_style.lua -gpu -1 -style_image /projects/photos/style/The-Tree-Of-Life.jpg -content_image /projects/photos/source/amy_b-w.jpeg -output_image /projects/photos/output/amy_tree_of_life.png
 
-
+# /root/torch/install/bin/luajit: /root/torch/install/share/lua/5.1/trepl/init.lua:384: module 'cutorch' not found:No LuaRocks module found for cutorch
+#        	no field package.preload['cutorch']
+#        	no file '/root/.luarocks/share/lua/5.1/cutorch.lua'
+#        	no file '/root/.luarocks/share/lua/5.1/cutorch/init.lua'
+#        	no file '/root/torch/install/share/lua/5.1/cutorch.lua'
+#        	no file '/root/torch/install/share/lua/5.1/cutorch/init.lua'
+#        	no file './cutorch.lua'
+#        	no file '/root/torch/install/share/luajit-2.1.0-beta1/cutorch.lua'
+#        	no file '/usr/local/share/lua/5.1/cutorch.lua'
+#        	no file '/usr/local/share/lua/5.1/cutorch/init.lua'
+#        	no file '/root/.luarocks/lib/lua/5.1/cutorch.so'
+#        	no file '/root/torch/install/lib/lua/5.1/cutorch.so'
+#        	no file '/root/torch/install/lib/cutorch.so'
+#        	no file './cutorch.so'
+#        	no file '/usr/local/lib/lua/5.1/cutorch.so'
+#        	no file '/usr/local/lib/lua/5.1/loadall.so'
+# stack traceback:
+#        	[C]: in function 'error'
+#        	/root/torch/install/share/lua/5.1/trepl/init.lua:384: in function 'require'
+#        	neural_style.lua:51: in function 'main'
+#        	neural_style.lua:515: in main chunk
+#        	[C]: in function 'dofile'
+#        	/root/torch/install/lib/luarocks/rocks/trepl/scm-1/bin/th:145: in main chunk
+#        	[C]: at 0x00406670
 
