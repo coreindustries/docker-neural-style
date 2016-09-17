@@ -19,14 +19,20 @@ ADD version.txt /opt/version
 # Requires: docker run -d -p 3142:3142 --name apt_cacher_run apt_cacher
 # https://docs.docker.com/engine/examples/apt-cacher-ng/
 RUN  echo 'Acquire::http { Proxy "http://192.168.150.50:3142"; };' >> /etc/apt/apt.conf.d/01proxy
-RUN  echo 'http_proxy="http://192.168.150.50:3142/"' >> /etc/environment
-RUN  echo 'https_proxy="http://192.168.150.50:3142/"' >> /etc/environment
-RUN  echo 'ftp_proxy="http://192.168.150.50:3142/"' >> /etc/environment
+
+# ROUTE OTHER REQUESTS THROUGH SQUID PROXY
+
+RUN  echo 'http_proxy="http://192.168.150.50:3128/"' >> /etc/environment
+RUN  echo 'https_proxy="http://192.168.150.50:3128/"' >> /etc/environment
+RUN  echo 'ftp_proxy="http://192.168.150.50:3128/"' >> /etc/environment
 RUN  echo 'no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"' >> /etc/environment
-RUN  echo 'HTTP_PROXY="http://192.168.150.50:3142/"' >> /etc/environment
-RUN  echo 'HTTPS_PROXY="http://192.168.150.50:3142/"' >> /etc/environment
-RUN  echo 'FTP_PROXY="http://192.168.150.50:3142/"' >> /etc/environment
+RUN  echo 'HTTP_PROXY="http://192.168.150.50:3128/"' >> /etc/environment
+RUN  echo 'HTTPS_PROXY="http://192.168.150.50:3128/"' >> /etc/environment
+RUN  echo 'FTP_PROXY="http://192.168.150.50:3128/"' >> /etc/environment
 RUN  echo 'NO_PROXY="localhost,127.0.0.1,localaddress,.localdomain.com"' >> /etc/environment
+RUN  echo 'use_proxy=yes' >> /root/.wgetrc
+RUN  echo 'http_proxy=192.168.150.50:3128' >> /root/.wgetrc
+# RUN  echo 'https_proxy=192.168.150.50:3142' >> /root/.wgetrc
 
 # RUN apt-get update && apt-get install -y --no-install-recommends \
 # 	build-essential \
@@ -109,33 +115,10 @@ RUN apt-get install -y libprotobuf-dev protobuf-compiler
 RUN /root/torch/install/bin/luarocks install loadcaffe
 
 # luarocks install torch
-ENV CUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda
-ENV CUDA_BIN_PATH=/usr/local/cuda
-RUN /root/torch/install/bin/luarocks install cutorch
-# Step 14 : RUN /root/torch/install/bin/luarocks install cutorch
-#  ---> Running in 04cf18e68c0a
-# Cloning into 'cutorch'...
-# -- The C compiler identification is GNU 4.8.4
-# -- The CXX compiler identification is GNU 4.8.4
-# -- Check for working C compiler: /usr/bin/cc
-# -- Check for working C compiler: /usr/bin/cc -- works
-# -- Detecting C compiler ABI info
-# -- Detecting C compiler ABI info - done
-# -- Check for working CXX compiler: /usr/bin/c++
-# -- Check for working CXX compiler: /usr/bin/c++ -- works
-# -- Detecting CXX compiler ABI info
-# -- Detecting CXX compiler ABI info - done
-# -- Found Torch7 in /root/torch/install
-# CMake Error at /usr/share/cmake-2.8/Modules/FindCUDA.cmake:548 (message):
-#   Specify CUDA_TOOLKIT_ROOT_DIR
-# Call Stack (most recent call first):
-#   CMakeLists.txt:7 (FIND_PACKAGE)
+# ENV CUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda
+# ENV CUDA_BIN_PATH=/usr/local/cuda
+# RUN /root/torch/install/bin/luarocks install cutorch
 
-
-# -- Configuring incomplete, errors occurred!
-# See also "/tmp/luarocks_cutorch-scm-1-2034/cutorch/build/CMakeFiles/CMakeOutput.log".
-
-# Error: Build error: Failed building.
 
 # Install neural-style
 WORKDIR /root
@@ -143,36 +126,18 @@ RUN git clone --depth 1 https://github.com/jcjohnson/neural-style.git
 
 WORKDIR /root/neural-style
 RUN bash models/download_models.sh
+ADD models/* root/neural-style/models/
 
-# https://gist.githubusercontent.com/ksimonyan/3785162f95cd2d5fee77/raw/bb2b4fe0a9bb0669211cf3d0bc949dfdda173e9e/VGG_ILSVRC_19_layers_deploy.prototxt
-# https://bethgelab.org/media/uploads/deeptextures/vgg_normalised.caffemodel
+
+# wget -c https://gist.githubusercontent.com/ksimonyan/3785162f95cd2d5fee77/raw/bb2b4fe0a9bb0669211cf3d0bc949dfdda173e9e/VGG_ILSVRC_19_layers_deploy.prototxt
+# wget -c --no-check-certificate https://bethgelab.org/media/uploads/deeptextures/vgg_normalised.caffemodel
+# wget -c http://www.robots.ox.ac.uk/~vgg/software/very_deep/caffe/VGG_ILSVRC_19_layers.caffemodel
+# wget -c http://www.robots.ox.ac.uk/~vgg/software/very_deep/caffe/VGG_ILSVRC_19_layers.caffemodel -e use_proxy=yes -e http_proxy=http://192.168.150.50:3128
+
+
 
 
 # https://github.com/jcjohnson/neural-style
 # th neural_style.lua -gpu -1 -style_image /projects/photos/style/The-Tree-Of-Life.jpg -content_image /projects/photos/source/amy_b-w.jpeg -output_image /projects/photos/output/amy_tree_of_life.png
 
-# /root/torch/install/bin/luajit: /root/torch/install/share/lua/5.1/trepl/init.lua:384: module 'cutorch' not found:No LuaRocks module found for cutorch
-#        	no field package.preload['cutorch']
-#        	no file '/root/.luarocks/share/lua/5.1/cutorch.lua'
-#        	no file '/root/.luarocks/share/lua/5.1/cutorch/init.lua'
-#        	no file '/root/torch/install/share/lua/5.1/cutorch.lua'
-#        	no file '/root/torch/install/share/lua/5.1/cutorch/init.lua'
-#        	no file './cutorch.lua'
-#        	no file '/root/torch/install/share/luajit-2.1.0-beta1/cutorch.lua'
-#        	no file '/usr/local/share/lua/5.1/cutorch.lua'
-#        	no file '/usr/local/share/lua/5.1/cutorch/init.lua'
-#        	no file '/root/.luarocks/lib/lua/5.1/cutorch.so'
-#        	no file '/root/torch/install/lib/lua/5.1/cutorch.so'
-#        	no file '/root/torch/install/lib/cutorch.so'
-#        	no file './cutorch.so'
-#        	no file '/usr/local/lib/lua/5.1/cutorch.so'
-#        	no file '/usr/local/lib/lua/5.1/loadall.so'
-# stack traceback:
-#        	[C]: in function 'error'
-#        	/root/torch/install/share/lua/5.1/trepl/init.lua:384: in function 'require'
-#        	neural_style.lua:51: in function 'main'
-#        	neural_style.lua:515: in main chunk
-#        	[C]: in function 'dofile'
-#        	/root/torch/install/lib/luarocks/rocks/trepl/scm-1/bin/th:145: in main chunk
-#        	[C]: at 0x00406670
 
