@@ -34,99 +34,36 @@ RUN  echo 'use_proxy=yes' >> /root/.wgetrc
 RUN  echo 'http_proxy=192.168.150.50:3128' >> /root/.wgetrc
 # RUN  echo 'https_proxy=192.168.150.50:3142' >> /root/.wgetrc
 
-# RUN apt-get update && apt-get install -y --no-install-recommends \
-# 	build-essential \
-# 	software-properties-common \
-# 	gcc \
-# 	cmake \
-# 	unzip \
-# 	wget \
-# 	git \
-# 	vim \
-# 	curl \
-# 	libprotobuf-dev \
-# 	protobuf-compiler \
-# 	lua5.2 \
-# 	lua5.2-dev \
-# 	luarocks \
-# 	luajit 
-# 	# && 
 
-# RUN apt-get update && apt-get install -y --no-install-recommends \
-# 	luarocks \
-# 	build-essential \
-# 	unzip
-
-
-
-# INSTALL LUA DEPENDENCIES
-# RUN luarocks install luasocket
-# RUN luarocks install image
-# RUN luarocks install nn
-# RUN /usr/local/bin/luarocks install nn
-# Step 5 : RUN . ~/.bashrc && /usr/local/bin/luarocks install nn
-#  ---> Running in 45c960af92e0
-# /bin/sh: 13: /root/.bashrc: shopt: not found
-# /bin/sh: 21: /root/.bashrc: shopt: not found
-# /bin/sh: 1: /usr/local/bin/luarocks: not found
-
-
-# # INSTALL LOADCAFFE
-# WORKDIR "/opt/"
-# RUN git clone https://github.com/szagoruyko/loadcaffe
-# RUN luarocks install loadcaffe
-
-
-# # # INSTALL TORCH
-# WORKDIR "/opt/torch"
-# RUN curl -s https://raw.githubusercontent.com/torch/ezinstall/master/install-all | bash
-
-# WORKDIR "/opt"
-
-# # # INSTALL NEURAL STYLE
-# RUN git clone https://github.com/jcjohnson/neural-style.git
-# WORKDIR "/opt/neural-style"
-# RUN sh models/download_models.sh
-
-# WORKDIR "/opt"
-
-# RUN rm -rf /var/lib/apt/lists/*
-
-
-# https://github.com/kchen-tw/docker_neural-style/blob/master/Dockerfile
-# FROM ubuntu:14.04
-# MAINTAINER kChen "kchen.ntu@gmail.com"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update
-RUN apt-get install -y curl wget software-properties-common
+RUN apt-get update && apt-get install -y \
+	curl \
+	wget \
+	software-properties-common \
+	libprotobuf-dev \
+	protobuf-compiler
+
 
 # Install torch7
 WORKDIR /root
-RUN curl -s https://raw.githubusercontent.com/torch/ezinstall/master/install-deps | bash
-RUN git clone https://github.com/torch/distro.git ~/torch --recursive
-WORKDIR /root/torch
-RUN /root/torch/install.sh
+# RUN curl -s https://raw.githubusercontent.com/torch/ezinstall/master/install-deps | bash
+# RUN git clone https://github.com/torch/distro.git ~/torch --recursive
+# WORKDIR /root/torch
+# RUN /root/torch/install.sh
 
 
 # Install loadcaffe./r
-RUN apt-get install -y libprotobuf-dev protobuf-compiler
-RUN /root/torch/install/bin/luarocks install loadcaffe
-
-# luarocks install torch
-# ENV CUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda
-# ENV CUDA_BIN_PATH=/usr/local/cuda
-# RUN /root/torch/install/bin/luarocks install cutorch
-
+# RUN /root/torch/install/bin/luarocks install loadcaffe
 
 # Install neural-style
-WORKDIR /root
-RUN git clone --depth 1 https://github.com/jcjohnson/neural-style.git
+# WORKDIR /root
+# RUN git clone --depth 1 https://github.com/jcjohnson/neural-style.git
 
 WORKDIR /root/neural-style
 # RUN bash models/download_models.sh
-ADD models/* root/neural-style/models/
+ADD models root/neural-style/
 
 
 # wget -c https://gist.githubusercontent.com/ksimonyan/3785162f95cd2d5fee77/raw/bb2b4fe0a9bb0669211cf3d0bc949dfdda173e9e/VGG_ILSVRC_19_layers_deploy.prototxt
