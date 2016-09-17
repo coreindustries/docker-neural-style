@@ -36,14 +36,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
 
-# # INSTALL TORCH
-# WORKDIR "/opt/torch"
-# # http://torch.ch/docs/getting-started.html
-# # in a terminal, run the commands WITHOUT sudo
-# RUN git clone https://github.com/torch/distro.git $WORKDIR --recursive
-# # WORKDIR $WORKDIR
-# RUN cd distro; ./install-deps;
-# RUN ./install.sh
+
 
 
 
@@ -54,11 +47,20 @@ RUN tar zxpf luarocks-2.4.0.tar.gz
 RUN cd luarocks-2.4.0; ./configure; sudo make bootstrap;
 RUN sudo luarocks install luasec; sudo luarocks install luasocket
 
-WORKDIR "/opt/loadcaffe"
+WORKDIR "/opt/"
 RUN git clone https://github.com/szagoruyko/loadcaffe
 # RUN luarocks install loadcaffe
 
 
+# # INSTALL TORCH
+# WORKDIR "/opt/torch"
+# # http://torch.ch/docs/getting-started.html
+# # in a terminal, run the commands WITHOUT sudo
+# RUN git clone https://github.com/torch/distro.git $WORKDIR --recursive
+# # WORKDIR $WORKDIR
+# RUN cd distro; ./install-deps;
+# RUN ./install.sh
+RUN curl -s https://raw.githubusercontent.com/torch/ezinstall/master/install-all | bash
 
 
 
