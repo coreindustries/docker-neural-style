@@ -49,7 +49,7 @@ RUN apt-get update && apt-get install -y \
 # Install torch7
 WORKDIR /opt
 RUN curl -s https://raw.githubusercontent.com/torch/ezinstall/master/install-deps | bash
-RUN git clone https://github.com/torch/distro.git ~/torch --recursive
+RUN git clone https://github.com/torch/distro.git /opt/torch --recursive
 WORKDIR /opt/torch
 RUN /opt/torch/install.sh
 
