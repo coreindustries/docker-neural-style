@@ -45,7 +45,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # RUN wget http://luarocks.org/releases/luarocks-2.4.0.tar.gz
 # RUN tar zxpf luarocks-2.4.0.tar.gz
 # RUN cd luarocks-2.4.0; ./configure; sudo make bootstrap;
-RUN sudo luarocks install luasec; sudo luarocks install luasocket;luarocks install image
+# RUN sudo luarocks install luasec; 
+RUN luarocks install luasocket;luarocks install image;luarocks install nn
 
 WORKDIR "/opt/"
 RUN git clone https://github.com/szagoruyko/loadcaffe
@@ -57,6 +58,16 @@ WORKDIR "/opt/torch"
 RUN curl -s https://raw.githubusercontent.com/torch/ezinstall/master/install-all | bash
 
 WORKDIR "/opt"
+
+# INSTALL NEURAL STYLE
+RUN git clone https://github.com/jcjohnson/neural-style.git
+WORKDIR "/opt/neural-style"
+RUN sh models/download_models.sh
+
+WORKDIR "/opt"
+
+
+
 
 
 
