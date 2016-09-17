@@ -40,14 +40,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 
-# INSTALL LOADCAFFE
-# WORKDIR "/opt/lua"
-# RUN wget http://luarocks.org/releases/luarocks-2.4.0.tar.gz
-# RUN tar zxpf luarocks-2.4.0.tar.gz
-# RUN cd luarocks-2.4.0; ./configure; sudo make bootstrap;
-# RUN sudo luarocks install luasec; 
-RUN luarocks install luasocket;luarocks install image;luarocks install nn
 
+# INSTALL LUA DEPENDENCIES
+RUN luarocks install luasocket
+RUN luarocks install image
+RUN luarocks install nn
+
+# INSTALL LOADCAFFE
 WORKDIR "/opt/"
 RUN git clone https://github.com/szagoruyko/loadcaffe
 RUN luarocks install loadcaffe
