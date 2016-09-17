@@ -47,23 +47,23 @@ RUN apt-get update && apt-get install -y \
 
 
 # Install torch7
-WORKDIR /root
-# RUN curl -s https://raw.githubusercontent.com/torch/ezinstall/master/install-deps | bash
-# RUN git clone https://github.com/torch/distro.git ~/torch --recursive
-# WORKDIR /root/torch
-# RUN /root/torch/install.sh
+WORKDIR /opt
+RUN curl -s https://raw.githubusercontent.com/torch/ezinstall/master/install-deps | bash
+RUN git clone https://github.com/torch/distro.git ~/torch --recursive
+WORKDIR /opt/torch
+RUN /opt/torch/install.sh
 
 
 # Install loadcaffe./r
-# RUN /root/torch/install/bin/luarocks install loadcaffe
+RUN /opt/torch/install/bin/luarocks install loadcaffe
 
 # Install neural-style
-# WORKDIR /root
-# RUN git clone --depth 1 https://github.com/jcjohnson/neural-style.git
+WORKDIR /opt
+RUN git clone --depth 1 https://github.com/jcjohnson/neural-style.git
 
-WORKDIR /root/neural-style
+WORKDIR /opt/neural-style
 # RUN bash models/download_models.sh
-ADD models /root/neural-style/models/
+ADD models /opt/neural-style/models/
 
 
 # wget -c https://gist.githubusercontent.com/ksimonyan/3785162f95cd2d5fee77/raw/bb2b4fe0a9bb0669211cf3d0bc949dfdda173e9e/VGG_ILSVRC_19_layers_deploy.prototxt
