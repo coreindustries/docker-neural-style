@@ -17,23 +17,26 @@ RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty main restricted uni
 # https://docs.docker.com/engine/examples/apt-cacher-ng/
 RUN  echo 'Acquire::http { Proxy "http://192.168.150.50:3142"; };' >> /etc/apt/apt.conf.d/01proxy
 
+# RUN apt-get update && apt-get install -y --no-install-recommends \
+# 	build-essential \
+#     software-properties-common \
+#     gcc \
+#     cmake \
+#     unzip \
+# 	wget \
+# 	git \
+# 	vim \
+# 	curl \
+# 	libprotobuf-dev \
+# 	protobuf-compiler \
+# 	lua5.2 \
+# 	lua5.2-dev \
+# 	luarocks \
+# 	luajit \
+	# && 
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
-	build-essential \
-    software-properties-common \
-    gcc \
-    cmake \
-    unzip \
-	wget \
-	git \
-	vim \
-	curl \
-	libprotobuf-dev \
-	protobuf-compiler \
-	lua5.2 \
-	lua5.2-dev \
 	luarocks \
-	luajit \
-	&& luarocks install luasocket;luarocks install image;luarocks install nn
 
 
 
@@ -45,27 +48,28 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # RUN luarocks install luasocket
 # RUN luarocks install image
 # RUN luarocks install nn
+# RUN luarocks install luasocket;luarocks install image;luarocks install nn
 
-# INSTALL LOADCAFFE
-WORKDIR "/opt/"
-RUN git clone https://github.com/szagoruyko/loadcaffe
-RUN luarocks install loadcaffe
+# # INSTALL LOADCAFFE
+# WORKDIR "/opt/"
+# RUN git clone https://github.com/szagoruyko/loadcaffe
+# RUN luarocks install loadcaffe
 
 
-# INSTALL TORCH
-WORKDIR "/opt/torch"
-RUN curl -s https://raw.githubusercontent.com/torch/ezinstall/master/install-all | bash
+# # INSTALL TORCH
+# WORKDIR "/opt/torch"
+# RUN curl -s https://raw.githubusercontent.com/torch/ezinstall/master/install-all | bash
 
-WORKDIR "/opt"
+# WORKDIR "/opt"
 
-# INSTALL NEURAL STYLE
-RUN git clone https://github.com/jcjohnson/neural-style.git
-WORKDIR "/opt/neural-style"
-RUN sh models/download_models.sh
+# # INSTALL NEURAL STYLE
+# RUN git clone https://github.com/jcjohnson/neural-style.git
+# WORKDIR "/opt/neural-style"
+# RUN sh models/download_models.sh
 
-WORKDIR "/opt"
+# WORKDIR "/opt"
 
-RUN rm -rf /var/lib/apt/lists/*
+# RUN rm -rf /var/lib/apt/lists/*
 
 
 
