@@ -38,7 +38,11 @@ FROM nvidia/cuda:8.0-cudnn5-runtime
 RUN apt-get update && apt-get install -y --no-install-recommends \
 	luarocks \
 	unzip \
-	gcc
+	gcc && \
+	luarocks install luasocket && \
+	luarocks install image && \
+	luarocks install nn
+
 
 
 
@@ -47,9 +51,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # RUN luarocks install luasocket
 # RUN luarocks install image
 # RUN luarocks install nn
-RUN luarocks install luasocket
-RUN luarocks install image
-RUN luarocks install nn
+# RUN luarocks install luasocket
+# RUN luarocks install image
+# RUN luarocks install nn
 
 # # INSTALL LOADCAFFE
 # WORKDIR "/opt/"
