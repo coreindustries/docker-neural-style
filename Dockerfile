@@ -47,6 +47,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # RUN luarocks install luasocket
 # RUN luarocks install image
 # RUN luarocks install nn
+RUN source ~/.bashrc && /root/torch/install/bin/luarocks install nn
 
 
 # # INSTALL LOADCAFFE
@@ -56,8 +57,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 # # # INSTALL TORCH
-WORKDIR "/opt/torch"
-RUN curl -s https://raw.githubusercontent.com/torch/ezinstall/master/install-all | bash
+# WORKDIR "/opt/torch"
+# RUN curl -s https://raw.githubusercontent.com/torch/ezinstall/master/install-all | bash
 
 # WORKDIR "/opt"
 
