@@ -37,14 +37,13 @@ FROM nvidia/cuda:8.0-cudnn5-runtime
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 	luarocks \
-	unzip \
-	gcc 
+	build-essential
 
 
 
 # INSTALL LUA DEPENDENCIES
-RUN luarocks install luasocket
-RUN luarocks install image
+# RUN luarocks install luasocket
+# RUN luarocks install image
 RUN luarocks install nn
 
 
