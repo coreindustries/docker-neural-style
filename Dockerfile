@@ -8,10 +8,10 @@ ADD version.txt /opt/version
 # MIRROR FOR APT-GET.
 # This significantly speeds up buid time
 # http://layer0.authentise.com/docker-4-useful-tips-you-may-not-know-about.html
-RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty main restricted universe multiverse" > /etc/apt/sources.list && \
-    echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
-    echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty-security main restricted universe multiverse" >> /etc/apt/sources.list && \
-    DEBIAN_FRONTEND=noninteractive apt-get update
+# RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty main restricted universe multiverse" > /etc/apt/sources.list && \
+#     echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
+#     echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty-security main restricted universe multiverse" >> /etc/apt/sources.list && \
+#     DEBIAN_FRONTEND=noninteractive apt-get update
 
 # CACHE APT-GET REQUESTS LOCALLY. 
 # Requires: docker run -d -p 3142:3142 --name apt_cacher_run apt_cacher
