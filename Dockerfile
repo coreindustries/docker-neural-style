@@ -47,7 +47,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # RUN luarocks install luasocket
 # RUN luarocks install image
 # RUN luarocks install nn
-RUN source ~/.bashrc && /root/torch/install/bin/luarocks install nn
+RUN source ~/.bashrc && /usr/local/bin/luarocks install nn
 
 
 # # INSTALL LOADCAFFE
