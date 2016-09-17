@@ -2,6 +2,7 @@
 # http://www.makeuseof.com/tag/create-neural-paintings-deepstyle-ubuntu/
 FROM nvidia/cuda:8.0-cudnn5-runtime
 
+ADD version.txt /opt/version
 
 #
 # MIRROR FOR APT-GET.
