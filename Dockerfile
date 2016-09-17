@@ -50,25 +50,25 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 # # INSTALL LOADCAFFE
-WORKDIR "/opt/"
-RUN git clone https://github.com/szagoruyko/loadcaffe
-RUN luarocks install loadcaffe
+# WORKDIR "/opt/"
+# RUN git clone https://github.com/szagoruyko/loadcaffe
+# RUN luarocks install loadcaffe
 
 
-# # INSTALL TORCH
-WORKDIR "/opt/torch"
-RUN curl -s https://raw.githubusercontent.com/torch/ezinstall/master/install-all | bash
+# # # INSTALL TORCH
+# WORKDIR "/opt/torch"
+# RUN curl -s https://raw.githubusercontent.com/torch/ezinstall/master/install-all | bash
 
-WORKDIR "/opt"
+# WORKDIR "/opt"
 
-# # INSTALL NEURAL STYLE
-RUN git clone https://github.com/jcjohnson/neural-style.git
-WORKDIR "/opt/neural-style"
-RUN sh models/download_models.sh
+# # # INSTALL NEURAL STYLE
+# RUN git clone https://github.com/jcjohnson/neural-style.git
+# WORKDIR "/opt/neural-style"
+# RUN sh models/download_models.sh
 
-WORKDIR "/opt"
+# WORKDIR "/opt"
 
-RUN rm -rf /var/lib/apt/lists/*
+# RUN rm -rf /var/lib/apt/lists/*
 
 
 
