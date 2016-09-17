@@ -48,7 +48,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # RUN luarocks install luasocket
 # RUN luarocks install image
 # RUN luarocks install nn
-# RUN luarocks install luasocket;luarocks install image;luarocks install nn
+RUN luarocks install luasocket;luarocks install image;luarocks install nn
 
 # # INSTALL LOADCAFFE
 # WORKDIR "/opt/"
