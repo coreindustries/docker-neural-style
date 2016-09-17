@@ -19,6 +19,14 @@ ADD version.txt /opt/version
 # Requires: docker run -d -p 3142:3142 --name apt_cacher_run apt_cacher
 # https://docs.docker.com/engine/examples/apt-cacher-ng/
 RUN  echo 'Acquire::http { Proxy "http://192.168.150.50:3142"; };' >> /etc/apt/apt.conf.d/01proxy
+RUN  echo 'http_proxy="http://192.168.150.50:3142/"' >> /etc/environment
+RUN  echo 'https_proxy="http://192.168.150.50:3142/"' >> /etc/environment
+RUN  echo 'ftp_proxy="http://192.168.150.50:3142/"' >> /etc/environment
+RUN  echo 'no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"' >> /etc/environment
+RUN  echo 'HTTP_PROXY="http://192.168.150.50:3142/"' >> /etc/environment
+RUN  echo 'HTTPS_PROXY="http://192.168.150.50:3142/"' >> /etc/environment
+RUN  echo 'FTP_PROXY="http://192.168.150.50:3142/"' >> /etc/environment
+RUN  echo 'NO_PROXY="localhost,127.0.0.1,localaddress,.localdomain.com"' >> /etc/environment
 
 # RUN apt-get update && apt-get install -y --no-install-recommends \
 # 	build-essential \
@@ -135,6 +143,9 @@ RUN git clone --depth 1 https://github.com/jcjohnson/neural-style.git
 
 WORKDIR /root/neural-style
 RUN bash models/download_models.sh
+
+# https://gist.githubusercontent.com/ksimonyan/3785162f95cd2d5fee77/raw/bb2b4fe0a9bb0669211cf3d0bc949dfdda173e9e/VGG_ILSVRC_19_layers_deploy.prototxt
+# https://bethgelab.org/media/uploads/deeptextures/vgg_normalised.caffemodel
 
 
 # https://github.com/jcjohnson/neural-style
