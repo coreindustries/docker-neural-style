@@ -125,7 +125,7 @@ WORKDIR /root
 RUN git clone --depth 1 https://github.com/jcjohnson/neural-style.git
 
 WORKDIR /root/neural-style
-RUN bash models/download_models.sh
+# RUN bash models/download_models.sh
 ADD models/* root/neural-style/models/
 
 
