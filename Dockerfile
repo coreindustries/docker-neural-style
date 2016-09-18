@@ -68,16 +68,37 @@ WORKDIR /opt/neural-style
 # RUN bash models/download_models.sh
 ADD models /opt/neural-style/models/
 
-
-# wget -c https://gist.githubusercontent.com/ksimonyan/3785162f95cd2d5fee77/raw/bb2b4fe0a9bb0669211cf3d0bc949dfdda173e9e/VGG_ILSVRC_19_layers_deploy.prototxt
-# wget -c --no-check-certificate https://bethgelab.org/media/uploads/deeptextures/vgg_normalised.caffemodel
-# wget -c http://www.robots.ox.ac.uk/~vgg/software/very_deep/caffe/VGG_ILSVRC_19_layers.caffemodel
-# wget -c http://www.robots.ox.ac.uk/~vgg/software/very_deep/caffe/VGG_ILSVRC_19_layers.caffemodel -e use_proxy=yes -e http_proxy=http://192.168.150.50:3128
-
-
-
-
 # https://github.com/jcjohnson/neural-style
-# th neural_style.lua -gpu 1 -style_image /projects/photos/style/The-Tree-Of-Life.jpg -content_image /projects/photos/source/amy_b-w.jpeg -output_image /projects/photos/output/amy_tree_of_life.png
+# WORKS! th neural_style.lua -gpu 1 -backend cudnn -style_image /projects/photos/style/The-Tree-Of-Life.jpg -content_image /projects/photos/source/amy_b-w.jpeg -output_image /projects/photos/output/amy_tree_of_life.png
+
+# cpu based
+# time th neural_style.lua -gpu -1 -style_image /projects/photos/style/The-Tree-Of-Life.jpg -content_image /projects/photos/source/amy_b-w.jpeg -output_image /projects/photos/output/amy_tree_of_life.png
+# real    95m34.102s                                                                                                                                                                          │·············
+# user    554m23.064s                                                                                                                                                                         │·············
+# sys     511m15.812s
+
+
+# Adam optimizer. fast, but not great 
+# th neural_style.lua -gpu 1 -backend cudnn -cudnn_autotune -optimizer adam -style_image /projects/photos/style/The-Tree-Of-Life.jpg -content_image /projects/photos/source/amy_b-w.jpeg -output_image /projects/photos/output/amy_tree_of_life2.png
+
+
+# highly opimized for Titan X Pascal
+# time th neural_style.lua -gpu 1 -backend cudnn -cudnn_autotune -optimizer lbfgs -style_image /projects/photos/style/The-Tree-Of-Life.jpg -content_image /projects/photos/source/amy_b-w.jpeg -output_image /projects/photos/output/amy_tree_of_life2.png
+# real    0m59.122s
+# user    0m51.156s
+# sys     0m7.460s
+
+
+# time th neural_style.lua -num_iterations 2000 -gpu 1 -backend cudnn -cudnn_autotune -optimizer lbfgs -style_image examples/inputs/starry_night.jpg -content_image /projects/photos/source/amy_b-w.jpeg -output_image /projects/photos/output/amy_starry_night.png
+
+
+# customize the model to be used:
+# neural_style.lua -gpu 1 -backend cudnn -proto_file models/VGG_ILSVRC_19_layers_deploy.prototxt -model_file models/vgg_normalised.caffemodel -style_image /projects/photos/style/The-Tree-Of-Life.jpg -content_image /projects/photos/source/amy_b-w.jpeg -output_image /projects/photos/output/amy_tree_of_life.png
+
+
+
+
+
+
 
 
