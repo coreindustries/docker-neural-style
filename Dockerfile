@@ -67,8 +67,8 @@ WORKDIR /opt
 RUN git clone --depth 1 https://github.com/jcjohnson/neural-style.git
 
 WORKDIR /opt/neural-style
-RUN bash models/download_models.sh
-# ADD models /opt/neural-style/models/
+# RUN bash models/download_models.sh
+ADD models /opt/neural-style/models/
 
 # https://github.com/jcjohnson/neural-style
 # WORKS! th neural_style.lua -gpu 1 -backend cudnn -style_image /projects/photos/style/The-Tree-Of-Life.jpg -content_image /projects/photos/source/amy_b-w.jpeg -output_image /projects/photos/output/amy_tree_of_life.png
