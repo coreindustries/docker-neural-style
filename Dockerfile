@@ -55,10 +55,12 @@ RUN /opt/torch/install.sh
 
 
 # Install loadcaffe./r
-RUN /opt/torch/install/bin/luarocks install loadcaffe; \
-	/opt/torch/install/bin/luarocks install nn; \
-	/opt/torch/install/bin/luarocks install image; \
-	/opt/torch/install/bin/luarocks install paths
+# RUN /opt/torch/install/bin/luarocks install loadcaffe; \
+# 	/opt/torch/install/bin/luarocks install nn; \
+# 	/opt/torch/install/bin/luarocks install image; \
+# 	/opt/torch/install/bin/luarocks install paths
+
+RUN /opt/torch/install/bin/luarocks install loadcaffe
 
 # Install neural-style
 WORKDIR /opt
