@@ -18,20 +18,20 @@ ADD version.txt /opt/version
 # CACHE APT-GET REQUESTS LOCALLY. 
 # Requires: docker run -d -p 3142:3142 --name apt_cacher_run apt_cacher
 # https://docs.docker.com/engine/examples/apt-cacher-ng/
-RUN  echo 'Acquire::http { Proxy "http://192.168.150.50:3142"; };' >> /etc/apt/apt.conf.d/01proxy
+#RUN  echo 'Acquire::http { Proxy "http://192.168.150.50:3142"; };' >> /etc/apt/apt.conf.d/01proxy
 
 # ROUTE OTHER REQUESTS THROUGH SQUID PROXY
 
-RUN  echo 'http_proxy="http://192.168.150.50:3128/"' >> /etc/environment; \
-	echo 'https_proxy="http://192.168.150.50:3128/"' >> /etc/environment; \
-	echo 'ftp_proxy="http://192.168.150.50:3128/"' >> /etc/environment; \
-	echo 'no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"' >> /etc/environment; \
-	echo 'HTTP_PROXY="http://192.168.150.50:3128/"' >> /etc/environment; \
-	echo 'HTTPS_PROXY="http://192.168.150.50:3128/"' >> /etc/environment; \ 
-	echo 'FTP_PROXY="http://192.168.150.50:3128/"' >> /etc/environment; \ 
-	echo 'NO_PROXY="localhost,127.0.0.1,localaddress,.localdomain.com"' >> /etc/environment; \ 
-	echo 'use_proxy=yes' >> /root/.wgetrc; \
-	echo 'http_proxy=192.168.150.50:3128' >> /root/.wgetrc
+# RUN  echo 'http_proxy="http://192.168.150.50:3128/"' >> /etc/environment; \
+# 	echo 'https_proxy="http://192.168.150.50:3128/"' >> /etc/environment; \
+# 	echo 'ftp_proxy="http://192.168.150.50:3128/"' >> /etc/environment; \
+# 	echo 'no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"' >> /etc/environment; \
+# 	echo 'HTTP_PROXY="http://192.168.150.50:3128/"' >> /etc/environment; \
+# 	echo 'HTTPS_PROXY="http://192.168.150.50:3128/"' >> /etc/environment; \ 
+# 	echo 'FTP_PROXY="http://192.168.150.50:3128/"' >> /etc/environment; \ 
+# 	echo 'NO_PROXY="localhost,127.0.0.1,localaddress,.localdomain.com"' >> /etc/environment; \ 
+# 	echo 'use_proxy=yes' >> /root/.wgetrc; \
+# 	echo 'http_proxy=192.168.150.50:3128' >> /root/.wgetrc
 # RUN  echo 'https_proxy=192.168.150.50:3142' >> /root/.wgetrc
 
 
