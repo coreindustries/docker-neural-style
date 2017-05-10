@@ -5,7 +5,7 @@
 STYLE_IMAGE=/projects/photos/style/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg
 CONTENT_IMAGE=/projects/createtech/LA-Banner.JPG
 OUTPUT=/projects/photos/output
-CMD="clear;time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/th"
+CMD=clear;time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/th
 
 STYLE_WEIGHT=5e2
 STYLE_SCALE=1.0
