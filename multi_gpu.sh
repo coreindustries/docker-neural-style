@@ -22,7 +22,7 @@ clear;time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustrie
   -backend cudnn -cudnn_autotune
 
 echo "------"
-time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/th thneural_style.lua \
+time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/th neural_style.lua \
   -content_image $CONTENT_IMAGE \
   -style_image $STYLE_IMAGE \
   -init image -init_image $OUTPUT/out1.png \
@@ -36,7 +36,7 @@ time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neur
   -backend cudnn -cudnn_autotune
 
 echo "------"
-time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/th thneural_style.lua \
+time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/th neural_style.lua \
   -content_image $CONTENT_IMAGE \
   -style_image $STYLE_IMAGE \
   -init image -init_image $OUTPUT/out2.png \
@@ -50,7 +50,7 @@ time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neur
   -backend cudnn -cudnn_autotune
 
 echo "------"
-time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/th thneural_style.lua \
+time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/th neural_style.lua \
   -content_image $CONTENT_IMAGE \
   -style_image $STYLE_IMAGE \
   -init image -init_image $OUTPUT/out3.png \
