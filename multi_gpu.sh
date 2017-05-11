@@ -21,7 +21,8 @@ STYLE_SCALE=1.0
 #   -tv_weight 0 \
 #   -backend cudnn -cudnn_autotune
 
-clear;time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/thneural_style.lua \
+echo "------"
+time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/thneural_style.lua \
   -content_image $CONTENT_IMAGE \
   -style_image $STYLE_IMAGE \
   -init image -init_image $OUTPUT/out1.png \
