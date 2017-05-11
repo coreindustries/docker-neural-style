@@ -2,9 +2,11 @@
 # scan of Starry Night from the Google Art Project, available here:
 # https://commons.wikimedia.org/wiki/File:Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg
 
-STYLE_IMAGE=/projects/photos/style/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg
+# STYLE_IMAGE=/projects/photos/style/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg
+STYLE_IMAGE=/projects/photos/style/Pieter_Bruegel_the_Elder_-_The_Tower_of_Babel_(Vienna)_-_Google_Art_Project_-_edited.jpg
 CONTENT_IMAGE=/projects/createtech/LA-Banner.JPG
 OUTPUT=/projects/photos/output
+OUTPUT_FILE=la_babel.png
 # CMD=clear;time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/th
 
 STYLE_WEIGHT=5e2
@@ -65,7 +67,9 @@ time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neur
   -backend cudnn
 
 echo "------ 5"
-# -image_size 2048 \ WORKS
+# -image_size 2048 \ WORKS 
+# 500 iterations: 6m49.999s
+# adjusting tv_weight
 time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/th neural_style.lua \
   -content_image $CONTENT_IMAGE \
   -style_image $STYLE_IMAGE \
@@ -75,9 +79,9 @@ time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neur
   -style_weight $STYLE_WEIGHT \
   -image_size 2048 \
   -num_iterations 500 \
-  -save_iter 50 \
-  -output_image $OUTPUT/out5.png \
-  -tv_weight 0 \
+  -save_iter 1 \
+  -output_image $OUTPUT/$OUTPUT_FILE \
+  -tv_weight 1e-3 \
   -lbfgs_num_correction 5 \
   -gpu 0,1 \
   -backend cudnn
