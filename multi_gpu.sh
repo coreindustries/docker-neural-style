@@ -83,5 +83,5 @@ time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neur
   -tv_weight 0 \
   -lbfgs_num_correction 5 \
   -gpu 0,1 \
-  -multigpu_strategy 6,12 \
+  -multigpu_strategy 8 \
   -backend cudnn
