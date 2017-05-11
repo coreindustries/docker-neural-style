@@ -21,7 +21,8 @@ clear;time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustrie
   -tv_weight 0 \
   -backend cudnn -cudnn_autotune
 
-echo "------"
+echo "\n\n"
+echo "------ 2"
 time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/th neural_style.lua \
   -content_image $CONTENT_IMAGE \
   -style_image $STYLE_IMAGE \
@@ -35,7 +36,8 @@ time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neur
   -tv_weight 0 \
   -backend cudnn -cudnn_autotune
 
-echo "------"
+echo "\n\n"
+echo "------ 3"
 time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/th neural_style.lua \
   -content_image $CONTENT_IMAGE \
   -style_image $STYLE_IMAGE \
@@ -49,7 +51,8 @@ time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neur
   -tv_weight 0 \
   -backend cudnn -cudnn_autotune
 
-echo "------"
+echo "\n\n"
+echo "------ 4"
 time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/th neural_style.lua \
   -content_image $CONTENT_IMAGE \
   -style_image $STYLE_IMAGE \
@@ -64,7 +67,8 @@ time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neur
   -gpu 0,1 \
   -backend cudnn
 
-echo "------"
+echo "\n\n"
+echo "------ 5"
 time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/th neural_style.lua \
   -content_image $CONTENT_IMAGE \
   -style_image $STYLE_IMAGE \
@@ -79,4 +83,5 @@ time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neur
   -tv_weight 0 \
   -lbfgs_num_correction 5 \
   -gpu 0,1 \
+  -multigpu_strategy 6,12 \
   -backend cudnn
