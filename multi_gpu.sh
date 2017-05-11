@@ -10,16 +10,16 @@ OUTPUT=/projects/photos/output
 STYLE_WEIGHT=5e2
 STYLE_SCALE=1.0
 
-clear;time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/th neural_style.lua \
-  -content_image $CONTENT_IMAGE \
-  -style_image $STYLE_IMAGE \
-  -style_scale $STYLE_SCALE \
-  -print_iter 1 \
-  -style_weight $STYLE_WEIGHT \
-  -image_size 256 \
-  -output_image $OUTPUT/out1.png \
-  -tv_weight 0 \
-  -backend cudnn -cudnn_autotune
+# clear;time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/th neural_style.lua \
+#   -content_image $CONTENT_IMAGE \
+#   -style_image $STYLE_IMAGE \
+#   -style_scale $STYLE_SCALE \
+#   -print_iter 1 \
+#   -style_weight $STYLE_WEIGHT \
+#   -image_size 256 \
+#   -output_image $OUTPUT/out1.png \
+#   -tv_weight 0 \
+#   -backend cudnn -cudnn_autotune
 
 clear;time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/thneural_style.lua \
   -content_image $CONTENT_IMAGE \
