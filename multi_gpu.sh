@@ -3,7 +3,7 @@
 # https://commons.wikimedia.org/wiki/File:Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg
 
 # STYLE_IMAGE=/projects/photos/style/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg
-STYLE_IMAGE=/projects/photos/style/Pieter_Bruegel_the_Elder_-_The_Tower_of_Babel_(Vienna)_-_Google_Art_Project_-_edited.jpg
+STYLE_IMAGE=/projects/photos/style/tower_of_babel.jpg
 CONTENT_IMAGE=/projects/createtech/LA-Banner.JPG
 OUTPUT=/projects/photos/output
 OUTPUT_FILE=la_babel.png
