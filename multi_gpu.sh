@@ -3,10 +3,11 @@
 # https://commons.wikimedia.org/wiki/File:Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg
 
 # STYLE_IMAGE=/projects/photos/style/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg
-STYLE_IMAGE=/projects/photos/style/tower_of_babel.jpg
+# STYLE_IMAGE=/projects/photos/style/tower_of_babel.jpg
+STYLE_IMAGE=/projects/photos/style/dance_at_le_moulin.jpg
 CONTENT_IMAGE=/projects/createtech/LA-Banner.JPG
 OUTPUT=/projects/photos/output
-OUTPUT_FILE=la_babel.png
+OUTPUT_FILE=dance_at_le_moulin.jpg
 # CMD=clear;time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/th
 
 STYLE_WEIGHT=5e2
