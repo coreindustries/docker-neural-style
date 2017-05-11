@@ -65,6 +65,7 @@ time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neur
   -backend cudnn
 
 echo "------ 5"
+# -image_size 2048 \ WORKS
 time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/th neural_style.lua \
   -content_image $CONTENT_IMAGE \
   -style_image $STYLE_IMAGE \
@@ -72,7 +73,7 @@ time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neur
   -style_scale $STYLE_SCALE \
   -print_iter 1 \
   -style_weight $STYLE_WEIGHT \
-  -image_size 2048 \
+  -image_size 2500 \
   -num_iterations 50 \
   -save_iter 25 \
   -output_image $OUTPUT/out5.png \
