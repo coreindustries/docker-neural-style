@@ -5,7 +5,7 @@
 # STYLE_IMAGE=/projects/photos/style/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg
 STYLE_IMAGE=/projects/photos/style/tower_of_babel.jpg
 # STYLE_IMAGE=/projects/photos/style/dance_at_le_moulin.jpg
-CONTENT_IMAGE=/projects/createtech/LA-Banner.JPG
+CONTENT_IMAGE=/projects/createtech/LA-Banner_2500.jpg
 OUTPUT=/projects/photos/output
 OUTPUT_FILE=img.jpg
 # CMD=clear;time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/th
@@ -60,7 +60,7 @@ time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neur
   -style_scale $STYLE_SCALE \
   -print_iter 1 \
   -style_weight $STYLE_WEIGHT \
-  -image_size 2048 \
+  -image_size 1875 \
   -num_iterations 100 \
   -output_image $OUTPUT/out4.png \
   -tv_weight 0 \
@@ -78,8 +78,8 @@ time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neur
   -style_scale $STYLE_SCALE \
   -print_iter 1 \
   -style_weight $STYLE_WEIGHT \
-  -image_size 2048 \
-  -num_iterations 5000 \
+  -image_size 1875 \
+  -num_iterations 500 \
   -save_iter 1 \
   -output_image $OUTPUT/$OUTPUT_FILE \
   -tv_weight 1e-3 \
