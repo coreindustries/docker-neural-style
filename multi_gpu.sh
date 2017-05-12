@@ -81,7 +81,7 @@ time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neur
   -print_iter 1 \
   -style_weight $STYLE_WEIGHT \
   -image_size 1560 \
-  -num_iterations 500 \
+  -num_iterations 5000 \
   -save_iter 1 \
   -output_image $OUTPUT/$OUTPUT_FILE \
   -tv_weight 1e-3 \

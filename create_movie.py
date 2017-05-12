@@ -50,7 +50,7 @@ for f in onlyfiles:
 # CMD="ffmpeg -pattern_type glob -i \"*.png\" -c:v libx264 $OUTPUT_FILE"
 
 # cmd="cd {};ffmpeg -framerate 120 -start_number 1 -i img-%03d.png {}".format(SOURCE_FOLDER, OUTPUT_FILE)
-cmd="ffmpeg -framerate 120 -start_number 1 -i img-%03d.jpg {}".format(OUTPUT_FILE)
+cmd="ffmpeg -framerate 300 -start_number 1 -i img-%03d.jpg {}".format(OUTPUT_FILE)
 
 print cmd
 # subprocess.call(cmd, shell=True)
