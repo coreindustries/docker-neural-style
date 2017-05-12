@@ -5,7 +5,7 @@
 # STYLE_IMAGE=/projects/photos/style/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg
 STYLE_IMAGE=/projects/photos/style/tower_of_babel.jpg
 # STYLE_IMAGE=/projects/photos/style/dance_at_le_moulin.jpg
-CONTENT_IMAGE=/projects/createtech/LA-Banner_2500.jpg
+CONTENT_IMAGE=/projects/createtech/LA-Banner_6240.jpg
 OUTPUT=/projects/photos/output
 OUTPUT_FILE=img.jpg
 # CMD=clear;time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neuralstyle:latest /opt/torch/install/bin/th
@@ -86,3 +86,6 @@ time nvidia-docker run -i -v /mnt/raid/projects:/projects -t coreindustries/neur
   -lbfgs_num_correction 5 \
   -gpu 0,1 \
   -backend cudnn
+
+echo "Compressing images"
+tar czf ../images.tgz ../../photos/output/*.jpg

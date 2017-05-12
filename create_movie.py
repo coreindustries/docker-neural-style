@@ -30,12 +30,16 @@ for f in onlyfiles:
 	if orig[-3:] == "png":
 		new = orig.replace("png", "jpg")
 		shutil.move(SOURCE_FOLDER+"/"+orig, SOURCE_FOLDER+"/"+new)
+	elif orig[0] == "-":
+		new = orig[1:]
+		shutil.move(SOURCE_FOLDER+"/"+orig, SOURCE_FOLDER+"/"+new)
 	else:
 		new = "".join(f.split("_")[0:-1])+"-"+num+".jpg"
+		shutil.move(SOURCE_FOLDER+"/"+orig, SOURCE_FOLDER+"/"+new)
 	
 	# 
 	print orig, num, new
-	# shutil.move(SOURCE_FOLDER+"/"+orig, SOURCE_FOLDER+"/"+new)
+	
 
 
 
@@ -46,7 +50,7 @@ for f in onlyfiles:
 # CMD="ffmpeg -pattern_type glob -i \"*.png\" -c:v libx264 $OUTPUT_FILE"
 
 # cmd="cd {};ffmpeg -framerate 120 -start_number 1 -i img-%03d.png {}".format(SOURCE_FOLDER, OUTPUT_FILE)
-cmd="ffmpeg -framerate 120 -start_number 1 -i img-%03d.jpg {}".format(SOURCE_FOLDER, OUTPUT_FILE)
+cmd="ffmpeg -framerate 120 -start_number 1 -i img-%03d.jpg {}".format(OUTPUT_FILE)
 
 print cmd
 # subprocess.call(cmd, shell=True)
