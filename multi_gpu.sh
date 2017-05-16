@@ -3,7 +3,7 @@
 # https://commons.wikimedia.org/wiki/File:Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg
 
 # STYLE_IMAGE=/projects/photos/style/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg
-STYLE_IMAGE=/projects/createtech/source/2385573036_6975a48c6a.jpg
+STYLE_IMAGE=/projects/createtech/source/vaious-black-lines-patterns-2049668.jpg
 # STYLE_IMAGE=/projects/photos/style/dance_at_le_moulin.jpg
 CONTENT_IMAGE=/projects/createtech/LA-Banner_6240.jpg
 OUTPUT=/projects/photos/output
